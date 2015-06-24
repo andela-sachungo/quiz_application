@@ -4,72 +4,22 @@
 		<title>Quiz application</title>
 		<meta charset="utf-8" >
 		<link type="text/css" rel="stylesheet" href="quiz.css" />
-		<script src = "quiz.js" ></script>
+		<script type="text/javascript" src= "jquery-1.11.3.min.js"></script>
+		
 	</head>
 
 	<body>
 		<h1> Test Questions </h1>
 		<p> Read the following questions and choose the correct answer, <strong>only one</strong> answer is correct.
 			 <em>Do not use the browser buttons</em>;only use the ones provided in the page.
-		<form name= "test" onSubmit = "return checkAllQuestions()">
-			<fieldset>
-				<fieldset>
-				<legend>Question 1 of 5</legend>
-				<p> What is 5+2 ? </p>
-			
-					<li><label><input type="radio" name="ans" value="correct">7</label></li>
-					<li><label><input type="radio" name="ans" value="wrong">10</label></li>
-					<li><label><input type="radio" name="ans" value="wrong">12</label></li>
-					<li><label><input type="radio" name="ans" value="wrong">6</label></li>
-		
-				</fieldset>
-
-				<fieldset>
-				<legend>Question 2 of 5</legend>
-				<p> What is 30/15 ? </p>
-				<ul>
-					<li><label><input type="radio" name="ans1" value="wrong">3</label></li>
-					<li><label><input type="radio" name="ans1" value="wrong">4</label></li>
-					<li><label><input type="radio" name="ans1" value="correct">2</label></li>
-					<li><label><input type="radio" name="ans1" value="wrong">5</label></li>
-				</ul>
-				</fieldset>
-
-				<fieldset>
-				<legend>Question 3 of 5</legend>
-				<p> What is 23*3 ? </p>
-				<ul id="ans2">
-					<li><label><input type="radio" name="ans2" value="wrong">68</label></li>
-					<li><label><input type="radio" name="ans2" value="correct">69</label></li>
-					<li><label><input type="radio" name="ans2" value="wrong">67</label></li>
-					<li><label><input type="radio" name="ans2" value="wrong">66</label></li>
-				</ul>
-				</fieldset>
-
-				<fieldset>
-				<legend>Question 4 of 5</legend>
-				<p> What is 45*3 ? </p>
-				</ul>
-					<li><label><input type="radio" name="ans3" value="wrong">145</label></li>
-					<li><label><input type="radio" name="ans3" value="wrong">115</label></li>
-					<li><label><input type="radio" name="ans3" value="wrong">125</label></li>
-					<li><label><input type="radio" name="ans3" value="correct">135</label></li>
-				</ul>
-				</fieldset>
-
-				<fieldset>
-				<legend>Question 5 of 5</legend>
-				<p> What is 15*45 ? </p>
-				<ul>
-					<li><label><input type = "radio" name = "ans4" value = "wrong">695</label></li>
-					<li><label><input type = "radio" name = "ans4" value = "wrong">665</label></li>
-					<li><label><input type = "radio" name = "ans4" value = "wrong">670</label></li>
-					<li><label><input type = "radio" name = "ans4" value = "correct">675</label></li>
-				</ul>
-				</fieldset>
-		    </fieldset>
-		    <input type = "submit" >
-		    <p>Score:<input type = "text" name = "correctAnswer" ></p>
-	    </form>
+		<!-- <form name= "test" onSubmit = "return checkAllQuestions()"> -->
+			<div class="test">
+				
+		    </div>
+		    <!-- <input type = "submit" >
+		    <p>Score:<input type = "text" name = "correctAnswer" ></p> -->
+	    <!-- </form> -->
+	    <script src = "quiz.js" ></script>
 	</body>
+	
 </html>
