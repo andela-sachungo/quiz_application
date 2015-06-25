@@ -97,8 +97,9 @@ var getScore = function() {
 		}
 	} 
 	/* write the score to the DOM */
-  $("#quiz").append("Congratulations for fininshing the quiz!");
-	score.append("Your score is " + correct + " out of " + questions.length);
+  var output = "Congratulations for fininshing the quiz! " + "Your score is " + correct + " out of " + questions.length;
+  
+	score.append(output);
 
 	return score;
 
@@ -184,5 +185,10 @@ $("#next").on('click', function(argEvent) {
  $(".button").on('mouseleave', function(){
     $(this).removeClass('active'); //remove class off the buttons
  });
+
+/* change the background color of the selected radio button */
+// $("input[type ='radio']").on('click', function() {
+//   $(this).css("background", "#40E0D0");
+// });
 
 });
