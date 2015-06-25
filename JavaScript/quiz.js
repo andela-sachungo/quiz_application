@@ -178,14 +178,6 @@ $("#next").on('click', function(argEvent) {
   
 });
  
- /* create an animation of the next and submit buttons to be implemented on hover event */
- $(".button").on('mouseenter', function(){
-    $(this).addClass('active'); // add class to the buttons
- });
- $(".button").on('mouseleave', function(){
-    $(this).removeClass('active'); //remove class off the buttons
- });
-
 /* change the background color of the selected radio button */
 // $("input[type ='radio']").on('click', function() {
 //   $(this).css("background", "#40E0D0");
