@@ -33,6 +33,8 @@ var questionCount = 0; //count the questions
 var userSelection = []; // stores the user choices in an array
 var test = $("#test"); // cache the div id in the html file
 
+$("#submit").hide();
+
 /* create and return the div element that will have the questions and the answer choices to be selected */
 var questionAnswerElement = function(index) {
 	/*creating a new fieldset element */
@@ -79,65 +81,6 @@ var radioAnswers = function(number) {
 	return radioList; 
 }; //end of function
 
-/* create a function that the questions together with answers each time it's called */
-var displayQuestion = function () {
-	/*when the function is called, first fade out the element attached to it to transparent then 
-	 load the next question, which is faded into the page, by writing the function for it as 
-	 the callback of the fadeOut() */
-   test.fadeOut(function() {
-   	/*  remove the fieldset with the given id together with anything associated 
-   	   with it, i.e. the question element */
-   	 $("#quiz").remove();
-
-   	 /* getting the next question */
-   	 if(questionCount < questions.length) {
-   	 	var nextQuestion = questionAnswerElement(questionCount);
-   	 	test.append(nextQuestion).fadeIn();
-   	 }
-   	 else {
-      /* event handler for the submit button */
-      $("#submit").on('click', function(argEvent) {
-		//stop the click listener from operating when the div with id element is being faded out
-		argEvent.preventDefault(); //to prevent the browser's default action from occurring when it sees the submit button
-	    $('#next').hide(); //hide the next button
-		if(test.is(":animated")) {
-			return false; //stops the default event action from being called and stopping the event from propagating
-		}
-
-       getScore();
-  
-      });
-   	 } //end of else
-    }); //end of fadeout 
- 
-}; // end of function
-
- /* display the first question */
-  displayQuestion();
-
-/* create a  function to store the user choices in an array */
-var chooseAnswer = function () {
-   userSelection[questionCount] = $("input[name ='answer']:checked").val();
-}; // end of function
-
-/* event handler for the next button in the page */
-/*created usin the on() method, the event name is the first parameter 
-  and  the event handler is the second parameter */
-
-$("#next").on('click', function(argEvent) {
-	//stop the click listener from operating when the div with id element is being faded out
-	argEvent.preventDefault(); //to prevent the browser's default action from occurring when it sees the next button
-
-	if(test.is(":animated")) {
-		return false; //stops the default event action from being called and stopping the event from propagating
-	}
-
-	chooseAnswer(); //call the function that stores the answer chosen
-	questionCount++; //increase the question counter by one
-    displayQuestion(); //display the next question
-  
-});
-
 /* create a function to compute the score and display the result once a person finishes 
 the test and clicks submit */
 var getScore = function() {
@@ -154,10 +97,79 @@ var getScore = function() {
 		}
 	} 
 	/* write the score to the DOM */
-	score.append("The score is " + correct + "out of " + questions.length);
+	score.append("The score is " + correct + " out of " + questions.length);
 
 	return score;
 
 }; //end of function
+
+/* create a function that the questions together with answers each time it's called */
+var displayQuestion = function () {
+	/*when the function is called, first fade out the element attached to it to transparent then 
+	 load the next question, which is faded into the page, by writing the function for it as 
+	 the callback of the fadeOut() */
+   test.fadeOut(function() {
+   	/*  remove the fieldset with the given id together with anything associated 
+   	   with it, i.e. the question element */
+   	 $("#quiz").remove();
+
+   	 /* getting the next question */
+   	 if(questionCount < questions.length) {
+   	 	var nextQuestion = questionAnswerElement(questionCount);
+   	 	test.append(nextQuestion).fadeIn();
+   	 	if(questionCount === (questions.length - 1)){
+   	 		$("#next").hide();
+   	 		$("#submit").show();
+
+   	 		/* event handler for the submit button */
+   	 		/* append the score to the page when the user clicks submit */
+   	 		$("#submit").on('click', function(anEvent) {
+   	 			anEvent.preventDefault(); //to prevent the browser's default action from occurring when it sees the submit button
+	
+			    if(test.is(":animated")) {
+				  return false; //stops the default event action from being called and stopping the event from propagating
+			    }
+
+			    $("#intro").hide();
+   	 		    $("h1").hide();
+   	 		    $("#quiz").hide();
+
+	           var scoreResult = getScore();
+               test.append(scoreResult).fadeIn();
+               $("#submit").hide();
+   	 		});
+   	 	}
+   	 }
+    }); //end of fadeout 
+ 
+}; // end of function
+
+ /* display the first question */
+  displayQuestion();
+
+/* create a  function to store the user choices in an array */
+var chooseAnswer = function () {
+   var temp = $("input[name ='answer']:checked").val();
+   return temp;
+}; // end of function
+
+/* event handler for the next button in the page */
+/*created usin the on() method, the event name is the first parameter 
+  and  the event handler is the second parameter */
+
+$("#next").on('click', function(argEvent) {
+	//stop the click listener from operating when the div with id element is being faded out
+	argEvent.preventDefault(); //to prevent the browser's default action from occurring when it sees the next button
+
+	if(test.is(":animated")) {
+		return false; //stops the default event action from being called and stopping the event from propagating
+	}
+
+	var choice = chooseAnswer(); //call the function that stores the answer chosen
+    userSelection.push(temp);
+	questionCount++; //increase the question counter by one
+    displayQuestion(); //display the next question
+  
+});
 
 });
