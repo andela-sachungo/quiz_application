@@ -133,6 +133,8 @@ var displayQuestion = function () {
 			    $("#intro").hide();
    	 		    $("h1").hide();
    	 		    $("#quiz").hide();
+   	 		    userSelection.push(chosenAnswer()); //push the answer chosen for the last question into the array
+               console.log(userSelection);  
 
 	           var scoreResult = getScore();
                test.append(scoreResult).fadeIn();
@@ -148,9 +150,10 @@ var displayQuestion = function () {
   displayQuestion();
 
 /* create a  function to store the user choices in an array */
-var chooseAnswer = function () {
-   var temp = $("input[name ='answer']:checked").val();
-   return temp;
+var chosenAnswer = function () {
+   var temp = $("input[name ='answer']:checked").val(); //gets the index of the answer chosen
+   var answerChosen = questions[questionCount].answerChoices[temp]; //go to the answer choices and takes the value of the above index
+   return answerChosen;
 }; // end of function
 
 /* event handler for the next button in the page */
@@ -165,8 +168,9 @@ $("#next").on('click', function(argEvent) {
 		return false; //stops the default event action from being called and stopping the event from propagating
 	}
 
-	var choice = chooseAnswer(); //call the function that stores the answer chosen
-    userSelection.push(temp);
+	// var choice = chosenAnswer(); //call the function that stores the answer chosen
+    userSelection.push(chosenAnswer()); //push the value of the chosenAnswer() return to the array
+
 	questionCount++; //increase the question counter by one
     displayQuestion(); //display the next question
   
