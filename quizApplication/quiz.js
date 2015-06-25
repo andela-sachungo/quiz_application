@@ -97,7 +97,8 @@ var getScore = function() {
 		}
 	} 
 	/* write the score to the DOM */
-	score.append("The score is " + correct + " out of " + questions.length);
+  $("#quiz").append("Congratulations for fininshing the quiz!");
+	score.append("Your score is " + correct + " out of " + questions.length);
 
 	return score;
 
@@ -175,5 +176,13 @@ $("#next").on('click', function(argEvent) {
     displayQuestion(); //display the next question
   
 });
+ 
+ /* create an animation of the next and submit buttons to be implemented on hover event */
+ $(".button").on('mouseenter', function(){
+    $(this).addClass('active'); // add class to the buttons
+ });
+ $(".button").on('mouseleave', function(){
+    $(this).removeClass('active'); //remove class off the buttons
+ });
 
 });
