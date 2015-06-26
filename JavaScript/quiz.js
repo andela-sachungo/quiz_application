@@ -173,6 +173,7 @@ var displayQuestion = function () {
       $("input[type ='radio']").on('click', function(){
       $(this).parent('li').toggleClass('highlight', this.checked);
       }); //end of event handler
+
    	} //end of outer if
   }); //end of fadeout 
 }; // end of function
@@ -198,7 +199,6 @@ $("#next").on('click', function(argEvent) {
 	if(test.is(":animated")) {
 		return false; //stops the default event action from being called and stopping the event from propagating
 	}
-
 	// var choice = chosenAnswer(); //call the function that stores the answer chosen
     userSelection.push(chosenAnswer()); //push the value of the chosenAnswer() return to the array
 
@@ -208,3 +208,13 @@ $("#next").on('click', function(argEvent) {
 }); //end of 'next' event handler
 
 }); //end of $(function() {})
+
+//disable next button until user selects an answer
+      // if($("input[checked = 'checked']").prop('disabled', true)) {
+      //   alert("Please make a selection");
+      //   // $("#next").disable();
+      //   $("#next").attr('disabled', 'disabled');
+      // }
+      // else {
+      //   $("#next").removeAttr('disabled');
+      // }
