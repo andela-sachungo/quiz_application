@@ -163,7 +163,17 @@ var displayQuestion = function () {
           $("#submit").hide();
    	 		});
    	 	}
-   	}
+      
+      //check if the radio button is clicked and highlight it
+      //use the on() method to attach the event handler for clicking a button
+      //use toggleClass() method to add the 'highlight' class to the <li> element if an answer is chosen,
+      // i.e. if its 2nd argument is true
+      //'this' is a placeholder for the input element.
+      //parent() goes one level up the DOM from input, in this case, it goes to <li>
+      $("input[type ='radio']").on('click', function(){
+      $(this).parent('li').toggleClass('highlight', this.checked);
+      }); //end of event handler
+   	} //end of outer if
   }); //end of fadeout 
 }; // end of function
 
