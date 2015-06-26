@@ -163,7 +163,16 @@ var displayQuestion = function () {
           $("#submit").hide();
    	 		});
    	 	}
-      
+
+      //disable next button until user selects an answer
+      $("#next").on('mouseenter', function(myEvent) {
+        if(!($("input[name=answer]").is(":checked"))){
+          alert("Please make a selection");
+        }
+      }); //end of  event handler
+ 
+       var lastAnswerSelected = null; //variable to store the last button checked in a question, initialised to null
+
       //check if the radio button is clicked and highlight it
       //use the on() method to attach the event handler for clicking a button
       //use toggleClass() method to add the 'highlight' class to the <li> element if an answer is chosen,
@@ -171,7 +180,15 @@ var displayQuestion = function () {
       //'this' is a placeholder for the input element.
       //parent() goes one level up the DOM from input, in this case, it goes to <li>
       $("input[type ='radio']").on('click', function(){
-      $(this).parent('li').toggleClass('highlight', this.checked);
+        //check if the value stored in the lastAnswerSelected isn't null and remove the class before getting the next one selected
+        //prevents the app from highlighting an unchecked button
+        if(lastAnswerSelected !== null) {
+          lastAnswerSelected.removeClass("highlight");
+        }
+        
+        lastAnswerSelected = $(this).parent('li');
+
+      lastAnswerSelected.toggleClass('highlight', this.checked);
       }); //end of event handler
 
    	} //end of outer if
@@ -209,12 +226,3 @@ $("#next").on('click', function(argEvent) {
 
 }); //end of $(function() {})
 
-//disable next button until user selects an answer
-      // if($("input[checked = 'checked']").prop('disabled', true)) {
-      //   alert("Please make a selection");
-      //   // $("#next").disable();
-      //   $("#next").attr('disabled', 'disabled');
-      // }
-      // else {
-      //   $("#next").removeAttr('disabled');
-      // }
